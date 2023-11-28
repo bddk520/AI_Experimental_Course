@@ -18,7 +18,6 @@ batch_size = 16
 valid_size = 0.2
 
 def read_dataset(batch_size=16, valid_size=0.2, num_workers=0, pic_path='dataset',dataset = "cifar10"):
->>>>>>> master
     # 定义训练数据的转换操作
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),  # 在图像周围填充0，然后随机裁剪成32*32
@@ -35,7 +34,6 @@ def read_dataset(batch_size=16, valid_size=0.2, num_workers=0, pic_path='dataset
     ])
 
     # 加载训练、验证和测试数据集
-
     if dataset == "cifar10":
         train_data = datasets.CIFAR10(pic_path, train=True, download=True, transform=transform_train)
         valid_data = datasets.CIFAR10(pic_path, train=True, download=True, transform=transform_test)
@@ -44,7 +42,6 @@ def read_dataset(batch_size=16, valid_size=0.2, num_workers=0, pic_path='dataset
         train_data = datasets.CIFAR100(pic_path, train=True, download=True, transform=transform_train)
         valid_data = datasets.CIFAR100(pic_path, train=True, download=True, transform=transform_test)
         test_data = datasets.CIFAR100(pic_path, train=False, download=True, transform=transform_test)
->>>>>>> master
 
     # 获取用于验证的训练数据索引
     num_train = len(train_data)

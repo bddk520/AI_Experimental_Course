@@ -5,13 +5,8 @@ from tqdm import tqdm
 import torch.nn as nn
 import torch.optim as optim
 from DataRead import read_dataset
-<<<<<<< HEAD
-from resnet import ResNet18
-
-=======
 # from resnet import ResNet18
-from CNN.model.resnet_without_bn import ResNet18
->>>>>>> master
+from MLP.model.torch_mlp import MLP
 
 from torch.utils.tensorboard import SummaryWriter
 
@@ -19,27 +14,17 @@ from torch.utils.tensorboard import SummaryWriter
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 # 读数据
 batch_size = 128
-<<<<<<< HEAD
-train_loader,valid_loader,test_loader = read_dataset(batch_size=batch_size,pic_path='dataset')
-# 加载模型(使用预处理模型，修改最后一层，固定之前的权重)
-n_class = 10
-model = ResNet18()
-
-model.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1, bias=False)
-model.fc = torch.nn.Linear(512, n_class) # 将最后的全连接层改掉
-model = model.to(device)
-=======
 dataset = "cifar10"
 train_loader,valid_loader,test_loader = read_dataset(batch_size=batch_size,pic_path='dataset',dataset = "cifar10")
 # 加载模型(使用预处理模型，修改最后一层，固定之前的权重)
 n_class = 10 if dataset == "cifar10" else 100
-model = ResNet18()
-expansion = 1 
-model.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1, bias=False)
-model.fc = torch.nn.Linear(512 * expansion, n_class) # 将最后的全连接层改掉
+# n_class = 10 
+model = MLP()
+
+# model.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1, bias=False)
+# model.fc = torch.nn.Linear(512, n_class) # 将最后的全连接层改掉
 model = model.to(device)
 
->>>>>>> master
 # 使用交叉熵损失函数
 criterion = nn.CrossEntropyLoss().to(device)
 
@@ -130,19 +115,13 @@ for epoch in tqdm(range(1, n_epochs+1)):
     # 如果验证集损失函数减少，就保存模型。
     if valid_loss <= valid_loss_min:
         print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(valid_loss_min,valid_loss))
-<<<<<<< HEAD
-        torch.save(model.state_dict(), 'checkpoint/resnet18_cifar10.pt')
-=======
-        torch.save(model.state_dict(), 'checkpoint/resnet18_cifar10_without_bn.pt')
->>>>>>> master
+        torch.save(model.state_dict(), 'checkpoint/MLP_cifar10.pt')
         valid_loss_min = valid_loss
         counter = 0
     else:
         counter += 1
 
-<<<<<<< HEAD
-=======
-file = "para/" + "resnet18_cifar10_without_bn" + "_" + "model_parameter_sizes.txt" 
+file = "para/" + "MLP_cifar10" + "_" + "model_parameter_sizes.txt" 
 
 with open(file, "w") as f:
     total_params = 0
@@ -152,5 +131,4 @@ with open(file, "w") as f:
     f.write(f"Total number of parameters: {total_params}\n")
     print(f"Total number of parameters: {total_params}")
 
->>>>>>> master
 writer.close()
