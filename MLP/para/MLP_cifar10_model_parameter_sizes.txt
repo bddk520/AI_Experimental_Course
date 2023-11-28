@@ -1,0 +1,7 @@
+Parameter: fc1.weight, Size: torch.Size([50, 3072])
+Parameter: fc1.bias, Size: torch.Size([50])
+Parameter: fc2.weight, Size: torch.Size([50, 50])
+Parameter: fc2.bias, Size: torch.Size([50])
+Parameter: out.weight, Size: torch.Size([10, 50])
+Parameter: out.bias, Size: torch.Size([10])
+Total number of parameters: 156710

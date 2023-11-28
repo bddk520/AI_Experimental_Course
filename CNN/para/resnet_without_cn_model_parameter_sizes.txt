@@ -1,0 +1,12 @@
+Parameter: fc1.fc.weight, Size: torch.Size([512, 3072])
+Parameter: fc1.fc.bias, Size: torch.Size([512])
+Parameter: fc2.fc.weight, Size: torch.Size([256, 512])
+Parameter: fc2.fc.bias, Size: torch.Size([256])
+Parameter: fc3.fc.weight, Size: torch.Size([128, 256])
+Parameter: fc3.fc.bias, Size: torch.Size([128])
+Parameter: fc4.fc.weight, Size: torch.Size([10, 128])
+Parameter: fc4.fc.bias, Size: torch.Size([10])
+Parameter: conv1.weight, Size: torch.Size([64, 3, 3, 3])
+Parameter: fc.weight, Size: torch.Size([10, 512])
+Parameter: fc.bias, Size: torch.Size([10])
+Total number of parameters: 1745748
